@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import KakaoLogin from "react-kakao-login";
-import Img from "../../../assets/imgs/kakao_login_btn_simple_small.png";
+
 import { requestLogin } from "../../../modules/apis";
+
+import Img from "../../../assets/imgs/kakao_login_btn_simple_small.png";
 
 const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
 
-export const reponsekakao = (res: any) => {
-  requestLogin(res);
+const reponsekakao = async (res: any) => {
+  const data = await requestLogin(res);
+  return data;
 };
 const responseFail = () => {
   console.log("Error");
 };
+
 export default function KakaoLoginButton() {
   return (
     <Container>

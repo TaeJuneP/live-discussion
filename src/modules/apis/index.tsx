@@ -1,14 +1,15 @@
 import axios from "axios";
 
-export async function requestLogin(token: string) {
-  await axios({
-    method: "get",
+export const requestLogin = async (token: string) => {
+  return await axios({
+    method: "post",
+    url: "/auth/kakao",
     headers: { Authorization: token },
   })
-    .then(function (res) {
-      return res;
+    .then((res) => {
+      return res.data;
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log(err);
     });
-}
+};

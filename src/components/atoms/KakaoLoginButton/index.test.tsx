@@ -1,15 +1,10 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import KakaoButton from "./index";
-import { shallow } from "enzyme";
+import axios from "axios";
+import { requestLogin } from "../../../modules/apis";
+import MockAdapter from "axios-mock-adapter";
 
-describe("kakaoButton", () => {
-  //   it("should call remove on click", () => {
-  //     const mock = jest.spyOn(KakaoButton, "reponsekakao");
-  //     mock.mockImplementation(() => {});
-  //     const component = shallow(<KakaoButton />);
-  //     component.find("LoginButton").simulate("click");
-  //     expect(mock).toHaveBeenCalled();
-  //     mock.mockRestore();
-  //   });
+test("should fetch users", async () => {
+  const mock = new MockAdapter(axios, { delayResponse: 200 });
+  mock.onPost("/auth/kakao").reply(200, { data: "" });
+  const data = await requestLogin("");
+  expect(data).toEqual({ data: "" });
 });
