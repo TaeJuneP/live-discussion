@@ -8,15 +8,38 @@ import Img from "../../../assets/imgs/kakao_login_btn_simple_small.png";
 
 const API_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
 
-const reponsekakao = async (res: any) => {
-  const data = await requestLogin(res);
-  return data;
-};
-const responseFail = () => {
-  console.log("Error");
+type Props = {
+  setUserInfo: (userInfo: {
+    user: {
+      id: string;
+      name: string;
+      imgUrl: string;
+    };
+    token: string;
+    login: boolean;
+  }) => void;
 };
 
-export default function KakaoLoginButton() {
+export default function KakaoLoginButton(props: Props) {
+  const reponsekakao = async (res: any) => {
+    console.log(res);
+    // const data: any = await requestLogin(res);
+    if (res !== undefined) {
+      console.log(res);
+      props.setUserInfo({
+        user: {
+          id: res.profile.id,
+          name: res.profile.properties.nickname,
+          imgUrl: res.profile.properties.thumbnail_image,
+        },
+        token: res.response.access_token,
+        login: true,
+      });
+    }
+  };
+  const responseFail = () => {
+    console.log("Error");
+  };
   return (
     <Container>
       <LoginButton
@@ -41,6 +64,8 @@ const LoginButton = styled(KakaoLogin)`
   width: 60px;
   height: 30px;
   opacity: 0;
+  z-index: 1;
+  cursor: pointer;
 `;
 
 const KakaoImg = styled.img`

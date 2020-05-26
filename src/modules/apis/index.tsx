@@ -13,3 +13,13 @@ export const requestLogin = async (token: string) => {
       console.log(err);
     });
 };
+
+export const postCommand = async (
+  content: string,
+  url: string[],
+  token: string,
+  tendency: number
+) => {
+  
+  console.log(content, url, token, tendency);
+};

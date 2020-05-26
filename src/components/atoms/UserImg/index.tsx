@@ -14,7 +14,7 @@ export default function UserImg(props: Props) {
 }
 
 const Img = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 `;

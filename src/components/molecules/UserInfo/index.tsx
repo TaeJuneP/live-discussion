@@ -5,19 +5,31 @@ import Img from "../../atoms/UserImg";
 import NickName from "../../atoms/BaseText";
 
 type Props = {
+  name: string;
   imgUrl: string;
-  nickName: string;
+  location: { address: any; check: boolean };
 };
 
 export default function UserInfo(props: Props) {
+  console.log(props.location);
   return (
     <Container>
-      <Img imgUrl={props.imgUrl} />
-      <NickName text={props.nickName} />
+      <UserContainer>
+        <Img imgUrl={props.imgUrl} />
+        <NickName text={props.name} />
+      </UserContainer>
+      {props.location.check ? (
+        <NickName text={props.location.address.latitude} />
+      ) : null}
     </Container>
   );
 }
 
 const Container = styled.div`
+  display: block;
+`;
+
+const UserContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
