@@ -23,3 +23,5 @@ export const postCommand = async (
   
   console.log(content, url, token, tendency);
 };
+
+
