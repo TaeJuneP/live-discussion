@@ -16,7 +16,6 @@ export default function MainPage() {
     login: false,
   });
   const [width, setWidth] = useState(window.innerWidth);
-  const [single, setSingle] = useState([]);
   const [location, setLocation] = useState({ address: {}, check: false });
   const [cardList, setCardList] = useState([]);
   const cards: any = [
